@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="et">
+<head>
+	<meta charset="utf-8">
+	<title>Viimane külastus</title>
+</head>
+<body>
+	<h1>Viimane külastus</h1>
+	<ul>
+		<li><a href="/">Avalehele</a></li>
+		<li><a href="/regvisit">Külastuse registreerimine</a></li>
+	</ul>
+	<hr>
+	<% if (hasVisit) { %>
+		<p>Viimati registreeriti külastus <%= date %>, kell <%= time %> kui seda tegi <%= name %></p>
+	<% } else { %>
+		<p>Külastusi pole veel registreeritud.</p>
+	<% } %>
+	<hr>
+</body>
+</html>
