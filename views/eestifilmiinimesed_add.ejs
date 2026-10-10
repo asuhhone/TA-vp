@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="et">
+<head>
+	<meta charset="utf-8">
+	<title>Lisa uus inimene</title>
+</head>
+<body>
+	<h1>Lisa uus inimene</h1>
+	<ul>
+		<li><a href="/eestifilm">Eesti film</a></li>
+		<li><a href="/eestifilm/inimesed">Filmiga seotud inimesed</a></li>
+	</ul>
+	<hr>
+	<form method="POST">
+		<label for="firstNameInput">Eesnimi</label>
+		<input type="text" id="firstNameInput" name="firstNameInput" placeholder="Eesnimi" value="<%= firstName %>">
+		<br>
+		<label for="lastNameInput">Perenimi</label>
+		<input type="text" id="lastNameInput" name="lastNameInput" placeholder="Perenimi" value="<%= lastName %>">
+		<br>
+		<label for="bornInput">Sünnikuupäev</label>
+		<input type="date" id="bornInput" name="bornInput" value="<%= born %>">
+		<br>
+		<label for="deceasedInput">Surmakuupäev</label>
+		<input type="date" id="deceasedInput" name="deceasedInput" value="<%= deceased %>">
+		<br>
+		<input type="submit" value="Salvesta">
+	</form>
+	<hr>
+	<p><%= notice %></p>
+</body>
+</html>

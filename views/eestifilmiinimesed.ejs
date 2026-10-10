@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="et">
+<head>
+	<meta charset="utf-8">
+	<title>Filmiga seotud inimesed</title>
+</head>
+<body>
+	<h1>Filmiga seotud inimesed</h1>
+	<ul>
+		<li><a href="/eestifilm">Eesti film</a></li>
+		<li><a href="/eestifilm/inimesed_add">Lisa uus inimene</a></li>
+	</ul>
+	<hr>
+	<table border="1" cellpadding="4">
+		<tr>
+			<th>Eesnimi</th>
+			<th>Perenimi</th>
+			<th>Sünniaeg</th>
+			<th>Surmaaeg</th>
+		</tr>
+		<% personList.forEach(person => { %>
+			<tr>
+				<td><%= person.first_name %></td>
+				<td><%= person.last_name %></td>
+				<td><%= person.born.toLocaleDateString('et-EE') %></td>
+				<td><%= person.deceased ? person.deceased.toLocaleDateString('et-EE') : '' %></td>
+			</tr>
+		<% }); %>
+	</table>
+</body>
+</html>

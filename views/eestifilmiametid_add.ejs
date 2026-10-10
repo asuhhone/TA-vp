@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="et">
+<head>
+	<meta charset="utf-8">
+	<title>Lisa amet</title>
+</head>
+<body>
+	<h1>Lisa amet</h1>
+	<ul>
+		<li><a href="/eestifilm">Eesti film</a></li>
+	</ul>
+	<hr>
+	<form method="POST">
+		<label for="professionTitleInput">Ameti nimetus</label>
+		<input type="text" id="professionTitleInput" name="professionTitleInput" placeholder="Ameti nimetus" maxlength="50" value="<%= professionTitle %>">
+		<br>
+		<label for="professionDescriptionInput">Kirjeldus</label>
+		<br>
+		<textarea id="professionDescriptionInput" name="professionDescriptionInput" rows="5" cols="40" maxlength="1000" placeholder="Kirjeldus"><%= professionDescription %></textarea>
+		<br>
+		<input type="submit" value="Salvesta">
+	</form>
+	<hr>
+	<p><%= notice %></p>
+</body>
+</html>

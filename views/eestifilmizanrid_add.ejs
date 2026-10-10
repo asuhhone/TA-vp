@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="et">
+<head>
+	<meta charset="utf-8">
+	<title>Lisa žanr</title>
+</head>
+<body>
+	<h1>Lisa žanr</h1>
+	<ul>
+		<li><a href="/eestifilm">Eesti film</a></li>
+	</ul>
+	<hr>
+	<form method="POST">
+		<label for="genreNameInput">Žanri nimi</label>
+		<input type="text" id="genreNameInput" name="genreNameInput" placeholder="Žanri nimi" maxlength="50" value="<%= genreName %>">
+		<br>
+		<label for="genreDescriptionInput">Kirjeldus</label>
+		<br>
+		<textarea id="genreDescriptionInput" name="genreDescriptionInput" rows="5" cols="40" maxlength="1000" placeholder="Kirjeldus"><%= genreDescription %></textarea>
+		<br>
+		<input type="submit" value="Salvesta">
+	</form>
+	<hr>
+	<p><%= notice %></p>
+</body>
+</html>
