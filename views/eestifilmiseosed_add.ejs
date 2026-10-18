@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="et">
+<head>
+	<meta charset="utf-8">
+	<title>Lisa seos</title>
+</head>
+<body>
+	<h1>Lisa inimese, filmi ja ameti seos</h1>
+	<ul>
+		<li><a href="/eestifilm">Eesti film</a></li>
+		<li><a href="/eestifilm/seosed">Filmide seosed</a></li>
+	</ul>
+	<hr>
+	<form method="POST">
+		<label for="personSelect">Inimene</label>
+		<select id="personSelect" name="personSelect">
+			<option <%= personId ? '' : 'selected' %> disabled>Vali inimene ...</option>
+			<% personList.forEach(person => { %>
+				<option value="<%= person.id %>" <%= person.id == personId ? 'selected' : '' %>><%= person.first_name %> <%= person.last_name %> (<%= person.born.getFullYear() %>)</option>
+			<% }); %>
+		</select>
+		<br>
+		<label for="movieSelect">Film</label>
+		<select id="movieSelect" name="movieSelect">
+			<option <%= movieId ? '' : 'selected' %> disabled>Vali film ...</option>
+			<% movieList.forEach(movie => { %>
+				<option value="<%= movie.id %>" <%= movie.id == movieId ? 'selected' : '' %>><%= movie.title %> (<%= movie.release_year %>)</option>
+			<% }); %>
+		</select>
+		<br>
+		<label for="professionSelect">Amet</label>
+		<select id="professionSelect" name="professionSelect">
+			<option <%= professionId ? '' : 'selected' %> disabled>Vali amet ...</option>
+			<% professionList.forEach(profession => { %>
+				<option value="<%= profession.id %>" <%= profession.id == professionId ? 'selected' : '' %>><%= profession.title %></option>
+			<% }); %>
+		</select>
+		<br>
+		<label for="characterInput">Tegelaskuju (ainult näitlejale)</label>
+		<input type="text" id="characterInput" name="characterInput" maxlength="100" placeholder="Tegelaskuju nimi" value="<%= characterName %>">
+		<br>
+		<input type="submit" value="Salvesta">
+	</form>
+	<hr>
+	<p><%= notice %></p>
+</body>
+</html>

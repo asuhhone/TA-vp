@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="et">
+<head>
+	<meta charset="utf-8">
+	<title>Filmide seosed</title>
+</head>
+<body>
+	<h1>Kes millises filmis mida tegi</h1>
+	<ul>
+		<li><a href="/eestifilm">Eesti film</a></li>
+		<li><a href="/eestifilm/seosed_add">Lisa seos</a></li>
+	</ul>
+	<hr>
+	<% if (relationList.length == 0) { %>
+		<p>Seoseid pole veel lisatud.</p>
+	<% } else { %>
+		<table border="1" cellpadding="4">
+			<tr>
+				<th>Film</th>
+				<th>Inimene</th>
+				<th>Amet</th>
+				<th>Tegelaskuju</th>
+			</tr>
+			<% relationList.forEach(relation => { %>
+				<tr>
+					<td><%= relation.movie_title %> (<%= relation.release_year %>)</td>
+					<td><%= relation.first_name %> <%= relation.last_name %></td>
+					<td><%= relation.profession_title %></td>
+					<td><%= relation.character_name ? relation.character_name : '' %></td>
+				</tr>
+			<% }); %>
+		</table>
+	<% } %>
+</body>
+</html>
