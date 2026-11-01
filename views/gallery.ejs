@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="et">
+<head>
+	<meta charset="utf-8">
+	<title>Fotogalerii</title>
+</head>
+<body>
+	<h1>Fotogalerii</h1>
+	<p>Siin on kõik avalikud ja sisseloginud kasutajatele mõeldud fotod.</p>
+	<hr>
+	<ul>
+		<li><a href="/">Avalehele</a></li>
+		<li><a href="/galleryPhotoUpload">Lae fotosid üles</a></li>
+	</ul>
+	<hr>
+	<% if(photoList.length == 0){ %>
+		<p>Fotosid ei leitud!</p>
+	<% } %>
+	<% for(let i = 0; i < photoList.length; i ++){ %>
+		<a href="/gallery/normal/<%= photoList[i].filename %>">
+			<img src="/gallery/thumbs/<%= photoList[i].filename %>" alt="<%= photoList[i].alttext ? photoList[i].alttext : 'Galerii foto' %>">
+		</a>
+	<% } %>
+</body>
+</html>
