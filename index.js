@@ -6,12 +6,36 @@ const bodyparser = require('body-parser');
 const mysql = require('mysql2/promise');
 //moodul .env faili lugemiseks, keskkonnamuutujate parsimiseks
 require('dotenv').config();
+const session = require('express-session');
+const MySQLStore = require('express-mysql-session')(session);
+
  
+const checkLogin = require('./src/checkLogin');
 const dateET = require('./src/dateTimeET');
  
 //käivitan express.js funktsiooni ja annan nimeks "app"
 const app = express();
 //määrame veebilehtedele mallide renderdamise mootori
+  /* app.use(session({
+	secret: process.env.SES_SECRET,
+	saveUninitialized: false,
+	resave: false
+})); */
+const sessionStore = new MySQLStore({
+	host: process.env.DB_HOST,
+	user: process.env.DB_USER,
+	password: process.env.DB_PASS,
+	database: process.env.DB_NAME
+});
+app.use(session({
+	secret: process.env.SES_SECRET,
+	store: sessionStore,
+	saveUninitialized: false,
+	resave: false,
+	cookie: {
+		maxAge: 1000 * 60 * 60 * 1 //sessiooni kÃ¼psiste aegumisaeg
+	}
+}));
 app.set('view engine', 'ejs');
 //määran ühe päris kataloogi virtuaalses serveris kättesaadavaks
 app.use(express.static('public'));
@@ -55,7 +79,15 @@ app.get('/', async (req, res)=>{
 	}
 	res.render('index', {dayNow: dayNow, dateNow: dateNow, timeNow: timeNow, photoFile: photoFile, photoAlt: photoAlt});
 });
+//sisseloginud kasutajate avaleht
+app.get('/home', (req, res)=>{
+	res.render('home');
+});
 
+//vÃ¤ljalogimine
+app.get('/logout', (req, res)=>{
+	res.redirect('/');
+});
 //fotogalerii
 const galleryRouter = require('./routes/galleryRoutes');
 app.use('/gallery', galleryRouter);
@@ -90,4 +122,12 @@ app.use('/galleryPhotoUpload', galleryPhotoUploadRouter);
 app.get('/minust', (req, res)=>{
 	res.render('minust');
 });
+//kasutajakonto loomise marsruut
+const signupRouter = require('./routes/signupRoutes');
+app.use('/signup', signupRouter);
+
+//Sisselogimise marsruut
+const signinRouter = require('./routes/signinRoutes');
+app.use('/signin', signinRouter);
+
 app.listen(5123);

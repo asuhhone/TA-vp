@@ -2,24 +2,31 @@
 <html lang="et">
 <head>
 	<meta charset="utf-8">
-	<title>Fotogalerii</title>
+	<title>Anastasia Suhhonenko</title>
+	<link rel="stylesheet" href="/style/style.css">
 </head>
 <body>
+	<img src="../pic/veebiprogrammeerimine_2026_TA.png" alt="">
 	<h1>Fotogalerii</h1>
-	<p>Siin on kõik avalikud ja sisseloginud kasutajatele mõeldud fotod.</p>
 	<hr>
 	<ul>
-		<li><a href="/">Avalehele</a></li>
-		<li><a href="/galleryPhotoUpload">Lae fotosid üles</a></li>
+		<li><a href="/home">Avalehele</a></li>
+		<li><a href="/logout">Logi välja</a></li>
 	</ul>
 	<hr>
-	<% if(photoList.length == 0){ %>
-		<p>Fotosid ei leitud!</p>
-	<% } %>
-	<% for(let i = 0; i < photoList.length; i ++){ %>
-		<a href="/gallery/normal/<%= photoList[i].filename %>">
-			<img src="/gallery/thumbs/<%= photoList[i].filename %>" alt="<%= photoList[i].alttext ? photoList[i].alttext : 'Galerii foto' %>">
-		</a>
-	<% } %>
+	<dialog id="modal" class="modalarea">
+		<span id="modalClose" class="modalclose">&times;</span>
+		<div class="modalhorizontal">
+			<div class="modalvertical">
+				<p id="modalCaption"></p>
+				<img id="modalImage" src="../pic/empty.png" alt="galeriipilt">
+			</div>
+		</div>
+	</dialog>
+	
+	<div id="gallery" class="gallery">
+	<% galleryData.forEach(function(image){ %>
+      <img src="/gallery/thumbs/<%=image.src%>" alt="<%=image.alt%>" class="thumbs">
+    <% }); %>
 </body>
 </html>

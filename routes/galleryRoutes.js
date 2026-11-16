@@ -1,9 +1,14 @@
 const express = require('express');
+const checkLogin = require('../src/checkLogin');
+
 const router = express.Router();
+router.use(checkLogin.isLogin);
 
-//kontrollerid
-const {gallery} = require('../controllers/galleryControllers');
+//kasutatavad kontrollerid
+const {
+	galleryPage
+	} = require('../controllers/galleryControllers');
 
-router.route('/').get(gallery);
+router.route('/').get(galleryPage);
 
 module.exports = router;
